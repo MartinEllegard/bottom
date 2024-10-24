@@ -408,7 +408,15 @@ impl DataCollector {
                 self.data.temperature_sensors = data;
             }
 
+            #[cfg(feature = "lmsensors")]
+            if let Ok(data) =
+                temperature::get_temperature_data(&self.temperature_type, &self.filters.temp_filter)
+            {
+                self.data.temperature_sensors = data;
+            }
+
             #[cfg(target_os = "linux")]
+            #[cfg(not(feature = "lmsensors"))]
             if let Ok(data) =
                 temperature::get_temperature_data(&self.temperature_type, &self.filters.temp_filter)
             {

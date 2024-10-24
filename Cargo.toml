@@ -13,29 +13,29 @@ readme = "README.md"
 default-run = "btm"
 build = "build.rs"
 exclude = [
-    ".cargo-husky/",
-    ".github/",
-    ".idea",
-    ".vscode/",
-    "assets/",
-    "desktop/",
-    "docs/",
-    "flamegraphs/",
-    "sample_configs/",
-    "schema/",
-    "scripts/",
-    "wix/",
-    ".all-contributorsrc",
-    ".cirrus.yml",
-    ".gitignore",
-    ".markdownlint.json",
-    "CHANGELOG.md",
-    "clippy.toml",
-    "codecov.yml",
-    "CONTRIBUTING.md",
-    "Cross.toml",
-    "rust-toolchain.toml",
-    "rustfmt.toml",
+  ".cargo-husky/",
+  ".github/",
+  ".idea",
+  ".vscode/",
+  "assets/",
+  "desktop/",
+  "docs/",
+  "flamegraphs/",
+  "sample_configs/",
+  "schema/",
+  "scripts/",
+  "wix/",
+  ".all-contributorsrc",
+  ".cirrus.yml",
+  ".gitignore",
+  ".markdownlint.json",
+  "CHANGELOG.md",
+  "clippy.toml",
+  "codecov.yml",
+  "CONTRIBUTING.md",
+  "Cross.toml",
+  "rust-toolchain.toml",
+  "rustfmt.toml",
 ]
 # The oldest version I've tested that should still build - note this is not an official MSRV!
 rust-version = "1.74.0"
@@ -70,6 +70,7 @@ strip = false
 [features]
 battery = ["starship-battery"]
 nvidia = ["nvml-wrapper"]
+lmsensors = []
 gpu = ["nvidia"]
 zfs = []
 deploy = ["battery", "gpu", "zfs"]
@@ -82,7 +83,12 @@ generate_schema = ["schemars", "serde_json", "strum"]
 anyhow = "1.0.89"
 backtrace = "0.3.74"
 cfg-if = "1.0.0"
-clap = { version = "4.5.20", features = ["default", "cargo", "wrap_help", "derive"] }
+clap = { version = "4.5.20", features = [
+  "default",
+  "cargo",
+  "wrap_help",
+  "derive",
+] }
 concat-string = "1.0.1"
 crossterm = "0.27.0"
 ctrlc = { version = "3.4.5", features = ["termination"] }
@@ -93,7 +99,9 @@ humantime = "2.1.0"
 indexmap = "2.6.0"
 indoc = "2.0.5"
 itertools = "0.13.0"
-nvml-wrapper = { version = "0.10.0", optional = true, features = ["legacy-functions"] }
+nvml-wrapper = { version = "0.10.0", optional = true, features = [
+  "legacy-functions",
+] }
 regex = "1.11.0"
 serde = { version = "1.0.210", features = ["derive"] }
 starship-battery = { version = "0.10.0", optional = true }
@@ -107,7 +115,11 @@ unicode-width = "0.2.0"
 # Used for logging.
 fern = { version = "0.6.2", optional = true }
 log = { version = "0.4.22", optional = true }
-time = { version = "0.3.36", features = ["local-offset", "formatting", "macros"], optional = true }
+time = { version = "0.3.36", features = [
+  "local-offset",
+  "formatting",
+  "macros",
+], optional = true }
 
 # These are just used for JSON schema generation.
 schemars = { version = "0.8.21", optional = true }
@@ -126,13 +138,13 @@ mach2 = "0.4.2"
 
 [target.'cfg(target_os = "windows")'.dependencies]
 windows = { version = "0.58.0", features = [
-    "Win32_Foundation",
-    "Win32_Security",
-    "Win32_Storage_FileSystem",
-    "Win32_System_IO",
-    "Win32_System_Ioctl",
-    "Win32_System_ProcessStatus",
-    "Win32_System_Threading",
+  "Win32_Foundation",
+  "Win32_Security",
+  "Win32_Storage_FileSystem",
+  "Win32_System_IO",
+  "Win32_System_Ioctl",
+  "Win32_System_ProcessStatus",
+  "Win32_System_Threading",
 ] }
 
 [target.'cfg(target_os = "freebsd")'.dependencies]
@@ -142,7 +154,9 @@ filedescriptor = "0.8.2"
 
 [dev-dependencies]
 assert_cmd = "2.0.16"
-cargo-husky = { version = "1.5.0", default-features = false, features = ["user-hooks"] }
+cargo-husky = { version = "1.5.0", default-features = false, features = [
+  "user-hooks",
+] }
 predicates = "3.1.2"
 tempfile = "3.13.0"
 
@@ -150,7 +164,12 @@ tempfile = "3.13.0"
 portable-pty = "0.8.1"
 
 [build-dependencies]
-clap = { version = "4.5.20", features = ["default", "cargo", "wrap_help", "derive"] }
+clap = { version = "4.5.20", features = [
+  "default",
+  "cargo",
+  "wrap_help",
+  "derive",
+] }
 clap_complete = "4.5.33"
 clap_complete_nushell = "4.5.4"
 clap_complete_fig = "4.5.2"
@@ -160,41 +179,41 @@ indoc = "2.0.5"
 [package.metadata.deb]
 section = "utility"
 assets = [
-    [
-        "target/release/btm",
-        "usr/bin/",
-        "755",
-    ],
-    [
-        "LICENSE",
-        "usr/share/doc/btm/",
-        "644",
-    ],
-    [
-        "manpage/btm.1.gz",
-        "usr/share/man/man1/btm.1.gz",
-        "644",
-    ],
-    [
-        "completion/btm.bash",
-        "usr/share/bash-completion/completions/btm",
-        "644",
-    ],
-    [
-        "completion/btm.fish",
-        "usr/share/fish/vendor_completions.d/btm.fish",
-        "644",
-    ],
-    [
-        "completion/_btm",
-        "usr/share/zsh/vendor-completions/",
-        "644",
-    ],
-    [
-        "desktop/bottom.desktop",
-        "usr/share/applications/bottom.desktop",
-        "644",
-    ],
+  [
+    "target/release/btm",
+    "usr/bin/",
+    "755",
+  ],
+  [
+    "LICENSE",
+    "usr/share/doc/btm/",
+    "644",
+  ],
+  [
+    "manpage/btm.1.gz",
+    "usr/share/man/man1/btm.1.gz",
+    "644",
+  ],
+  [
+    "completion/btm.bash",
+    "usr/share/bash-completion/completions/btm",
+    "644",
+  ],
+  [
+    "completion/btm.fish",
+    "usr/share/fish/vendor_completions.d/btm.fish",
+    "644",
+  ],
+  [
+    "completion/_btm",
+    "usr/share/zsh/vendor-completions/",
+    "644",
+  ],
+  [
+    "desktop/bottom.desktop",
+    "usr/share/applications/bottom.desktop",
+    "644",
+  ],
 ]
 extended-description = """
 
@@ -214,13 +233,13 @@ output = "bottom_x86_64_installer.msi"
 
 [package.metadata.generate-rpm]
 assets = [
-    { source = "target/release/btm", dest = "/usr/bin/", mode = "755" },
-    { source = "LICENSE", dest = "/usr/share/doc/btm/", mode = "644" },
-    { source = "manpage/btm.1.gz", dest = "/usr/share/man/man1/btm.1.gz", mode = "644", doc = true },
-    { source = "completion/btm.bash", dest = "/usr/share/bash-completion/completions/btm", mode = "644" },
-    { source = "completion/btm.fish", dest = "/usr/share/fish/vendor_completions.d/btm.fish", mode = "644" },
-    { source = "completion/_btm", dest = "/usr/share/zsh/vendor-completions/", mode = "644" },
-    { source = "desktop/bottom.desktop", dest = "/usr/share/applications/bottom.desktop", mode = "644" },
+  { source = "target/release/btm", dest = "/usr/bin/", mode = "755" },
+  { source = "LICENSE", dest = "/usr/share/doc/btm/", mode = "644" },
+  { source = "manpage/btm.1.gz", dest = "/usr/share/man/man1/btm.1.gz", mode = "644", doc = true },
+  { source = "completion/btm.bash", dest = "/usr/share/bash-completion/completions/btm", mode = "644" },
+  { source = "completion/btm.fish", dest = "/usr/share/fish/vendor_completions.d/btm.fish", mode = "644" },
+  { source = "completion/_btm", dest = "/usr/share/zsh/vendor-completions/", mode = "644" },
+  { source = "desktop/bottom.desktop", dest = "/usr/share/applications/bottom.desktop", mode = "644" },
 ]
 
 [lints.rust]
